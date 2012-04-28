@@ -7,6 +7,23 @@ html, body {
   overflow: hidden;
 }
 
+#title-slide div {
+  font: 80pt Helvetica;
+  color: #fff;
+  margin-left: 20pt;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#title-slide div div {
+  position: absolute;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(90deg);
+  font-size: 30%;
+}
+
 #intro-video {
   position: fixed;
   top: -5%;
@@ -29,4 +46,8 @@ html, body {
   padding: 0;
   top: 0px;
   left: 0px;
+}
+
+.slide[current] {
+  visibility: visible;
 }

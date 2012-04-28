@@ -1,28 +1,61 @@
 (function(){
 
-  var PARALLAX_FACTOR = 0.1;
+  var PARALLAX_FACTOR = 0.08;
 
-  var _parallaxElements,
-      _slides;
+  var __slides = [];
 
-  window.addEventListener("mousemove", function(e){
-    var diffX = e.clientX - window.innerWidth / 2,
-        diffY = e.clientY - window.innerHeight / 2;
+  function Slide(element){
+    var _parallaxes = [];
 
-    for (var i = _parallaxElements.length - 1; i >= 0; i--) {
-      var element = _parallaxElements[i];
+    var parallaxElements = document.querySelectorAll("*[data-parallax]");
+
+    for (var i = parallaxElements.length - 1; i >= 0; i--) {
+      _parallaxes.push(new ParallaxItem(parallaxElements[i]));
+    };
+
+    this.start = function(){
+      for (var i = _parallaxes.length - 1; i >= 0; i--) {
+        _parallaxes[i].start();
+      };
+      element.setAttribute("current", true);
+    };
+
+    this.stop = function(){
+      for (var i = _parallaxes.length - 1; i >= 0; i--) {
+        _parallaxes[i].stop();
+      };
+      element.removeAttribute("current");
+    };
+
+    this.element = element;
+  }
+
+  function ParallaxItem(element){
+    function onMouseMove(e){
+      var diffX = e.clientX - window.innerWidth / 2,
+          diffY = e.clientY - window.innerHeight / 2;
       element.style.left = (-diffX - element.clientWidth / 2) * PARALLAX_FACTOR + "px";
       element.style.top = (-diffY - element.clientHeight / 2) * PARALLAX_FACTOR + "px";
     }
-  }, false);
 
-  window.addEventListener("click", function(e){
-    console.log("32234234");
-  }, false);
+    this.start = function(){
+      window.addEventListener("mousemove", onMouseMove, false);
+    };
+
+    this.stop = function(){
+      window.removeEventListener("mousemove", onMouseMove, false);
+    };
+  }
 
   document.addEventListener("DOMContentLoaded", function(e){
-    _parallaxElements = document.querySelectorAll("*[data-parallax]");
-    _slides = document.getElementsByClassName("slide");
+    var slideElements = document.getElementsByClassName("slide");
+    for (var i = slideElements.length - 1; i >= 0; i--) {
+      __slides.push(new Slide(slideElements[i]));
+    };
+    __slides.sort(function(a, b){
+      return a.element.getAttribute("data-order") < b.element.getAttribute("data-order");
+    });
+    __slides[0].start();
   }, false);
 
 }());
