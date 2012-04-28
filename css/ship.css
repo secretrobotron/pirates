@@ -1,0 +1,27 @@
+.parallel-container {
+  position: relative;
+  overflow: hidden;
+  width: 960px;
+  height: 540px;
+}
+.parallel-container img {
+  display: inline;
+  position: absolute;
+}
+
+#hijacker-left {
+  top: 127px;
+  left: 447px;
+}
+#hijacker-right {
+  top: 159px;
+  left: 681px;
+}
+#hostage-left {
+  top: 285px;
+  left: 221px;
+}
+#hostage-right {
+  top: 159px;
+  left: 342px;
+}
