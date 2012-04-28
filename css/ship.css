@@ -1,10 +1,9 @@
-.parallel-container {
+#ship-slide {
   position: relative;
-  overflow: hidden;
   width: 960px;
   height: 540px;
 }
-.parallel-container img {
+#ship-slide img {
   display: inline;
   position: absolute;
 }
