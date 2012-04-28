@@ -4,6 +4,7 @@ html, body {
   width: 100%;
   height: 100%;
   background: #000;
+  overflow: hidden;
 }
 
 #intro-video {
@@ -12,4 +13,20 @@ html, body {
   left: -5%;
   width: 110%;
   height: 110%;
+}
+
+*[data-parallax] {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  top: 0px;
+  left: 0px;
 }
