@@ -3,7 +3,7 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 			THRESHOLD = 0.5,
 			RADIUS = 250;
 	
-	var _lastX = 0, _lastY = 0, _lastTime = 0;
+	var _lastX = 0, _lastY = 0, _elapsedTime = 0;
 	var _slideElement = document.getElementById("deck-slide");
 	var _deckBackgroundElement = document.getElementById("deck-background");
 	var _deckBackgroundBlurredElement = document.getElementById("deck-background-blurred");
@@ -11,7 +11,7 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 	var _ak47NonBlurredElement = document.getElementById("ak47-non-blurred");
 	var _ak47BlurredElement = document.getElementById("ak47-blurred");
 	
-	var _panels = new Panels(_slideElement, THRESHOLD, 1, 2);
+	//var _panels = new Panels(_slideElement, THRESHOLD, 1, 2);
 
 	var _centerPoint = [window.innerWidth / 2, window.innerHeight / 2];
 
@@ -21,9 +21,9 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 	
 		update: function() {
 			// Move a little with a sin
-			_lastTime += 0.1;
-			_deckBackgroundElement.style.left = Math.sin(_lastTime * 0.2) * 16 + "px";
-			_deckBackgroundElement.style.top = Math.sin(Math.sin(_lastTime)) * 4 + "px";
+			_elapsedTime += 0.1;
+			_deckBackgroundElement.style.left = Math.sin(_elapsedTime * 0.2) * 16 + "px";
+			_deckBackgroundElement.style.top = Math.sin(_elapsedTime * 0.55) * 4 + "px";
 			
 			// Check mouse center
 			var centerX = CENTER_RECT[0] + parseInt(_slideElement.style.left);
@@ -45,17 +45,17 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 					length = Math.sqrt(diff[0]*diff[0] + diff[1]*diff[1]);
 
 			var p = length / RADIUS;
-			_panels.update(p);
+			//_panels.update(p);
 
 		},
 		start: function(){
 			setTimeout(function(){
-				_panels.start(true);
+				//_panels.start(true);
 				_timer.start();
 			}, 1000);
 		},
 		stop: function(){
-			_panels.stop();
+			//_panels.stop();
 			_timer.stop();
 		}
   });

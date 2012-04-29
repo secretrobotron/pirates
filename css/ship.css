@@ -5,23 +5,32 @@
 }
 #ship-slide img {
   display: inline;
+}
+#ship-background {
   position: absolute;
 }
-
+#ship-foreground {
+  position: absolute;
+  top: 23px;
+}
 #hijacker-left {
-  top: 127px;
+  position: absolute;
+  top: 159px;
   left: 447px;
 }
 #hijacker-right {
-  top: 159px;
+  position: absolute;
+  top: 209px;
   left: 681px;
 }
 #hostage-left {
-  top: 285px;
+  position: absolute;
+  top: 315px;
   left: 221px;
 }
 #hostage-right {
-  top: 159px;
+  position: absolute;
+  top: 209px;
   left: 342px;
 }
 
