@@ -12,6 +12,7 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
         loaded = 0;
     for (var i = videos.length - 1; i >= 0; i--) {
       if(videos[i].readyState === 4){
+        console.log(videos[i].currentSrc, videos[i].readyState);
         ++loaded;
       }
     }
