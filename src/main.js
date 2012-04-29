@@ -1,8 +1,7 @@
-require([
+define([
     "slide",
     "slides/slide1",
-    //"slides/slide2",
-	"slides/slide3"
+    "slides/slide2",
   ], function(Slide){
 
   Slide.sort();
