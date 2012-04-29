@@ -1,6 +1,6 @@
 define(["../slide"], function(Slide){
   
-  var slide = new Slide("peace-slide",{
+  var slide = new Slide("death-slide",{
     update: function(){
 
     },

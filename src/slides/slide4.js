@@ -46,6 +46,7 @@
     start: function(){
       _panels.start();
       centerVideo.play();
+      document.getElementById("waiting-slide-left").currentTime = 5;
     },
     stop: function(){
       _panels.stop();

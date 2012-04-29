@@ -1,5 +1,7 @@
 define(["../slide", "../panels"], function(Slide, Panels){
 
+  var DURATION = 10;
+
   var _elapsedTime = 0;
   var slideElement = document.getElementById("ship-slide"),
       videos = slideElement.querySelectorAll("*[data-choice-panel] video");
@@ -31,10 +33,16 @@ define(["../slide", "../panels"], function(Slide, Panels){
         shipElements[i].style.top = shipOffsets[i][0] + offsetY + "px";
         shipElements[i].style.left = shipOffsets[i][1] + offsetX + "px";
       }
+
+      if(document.getElementById("ship-audio").currentTime > DURATION){
+        Slide.play("deck-slide");
+      }
     },
     start: function(){
+      document.getElementById("ship-audio").play();
     },
     stop: function(){
+      document.getElementById("ship-audio").pause();
     }
   });
 
