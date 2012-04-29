@@ -51,7 +51,7 @@
       
       centerVideo.play();
       for (var i = panelVideos.length -1; i>-1; i--) {
-        panelVideos[i].stop();
+        panelVideos[i].pause();
       }
     }
   });

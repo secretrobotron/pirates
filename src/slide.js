@@ -25,7 +25,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
 
     _rAFLoop = new rAFLoop(updateLoop);
 
-    this.start = function(){
+    this.start = function(options){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].start();
       };
@@ -34,17 +34,17 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
       setTimeout(function(){
         _element.style.left = window.innerWidth / 2 - _element.clientWidth / 2 + "px";
         _rAFLoop.start();
-        _startEvent(_this);
+        _startEvent(_this, options);
       }, 10);
     };
 
-    this.stop = function(){
+    this.stop = function(options){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].stop();
       };
       _element.style.left = (-_element.clientWidth - 100) + "px";
       _rAFLoop.stop();
-      _stopEvent(_this);
+      _stopEvent(_this, options);
       setTimeout(function(){
         _element.removeAttribute("current");
       }, 1000);
@@ -78,7 +78,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
     });  
   };
 
-  Slide.play = function(slide){
+  Slide.play = function(slide, options){
     var index = 0;
     if(typeof(slide) === "string"){
       for (var i = __slides.length - 1; i >= 0; i--) {
@@ -93,16 +93,16 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
     }
     
     if(__currentSlide > -1){
-      __slides[__currentSlide].stop();
+      __slides[__currentSlide].stop(options);
     }
     __currentSlide = index;
-    __slides[__currentSlide].start();
+    __slides[__currentSlide].start(options);
   };
 
-  Slide.next = function(){
+  Slide.next = function(options){
     __slides[__currentSlide].stop();
     var nextSlide = __slides[++__currentSlide];
-    nextSlide.start();
+    nextSlide.start(options);
   };
 
   return Slide;
