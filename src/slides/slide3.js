@@ -15,7 +15,16 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 
 	var _centerPoint = [window.innerWidth / 2, window.innerHeight / 2];
 
-	var _timer = new Timer(_slideElement, 10000);
+	var _timer = new Timer(_slideElement, 10000, {
+    complete: function(){
+      if(_panels.last < THRESHOLD){
+        Slide.play("death-slide");
+      }
+      else{
+        Slide.play("peace-slide");
+      }
+    }
+  });
 
   var slide = new Slide("deck-slide", {
 	
