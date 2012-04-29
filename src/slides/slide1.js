@@ -37,6 +37,7 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
           _titleElement.addEventListener("click", function(e){
             next();
           }, false);
+          document.getElementById("waiting-slide-left").currentTime = 5;
         }
       }, 500);
     },
