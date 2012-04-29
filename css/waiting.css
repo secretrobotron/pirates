@@ -11,3 +11,6 @@
   -webkit-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
 }
+#waiting-video-right {
+  left: -300px;
+}

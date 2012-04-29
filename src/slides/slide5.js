@@ -1,4 +1,5 @@
 define(["../slide", "../panels"], function(Slide, Panels){
+  var VIDEO_END_WINDOW = 50;
   
   var slideElement = document.getElementById("start-slide");
   var videoElement = document.getElementById("start-video");
@@ -6,18 +7,15 @@ define(["../slide", "../panels"], function(Slide, Panels){
   var slide = new Slide("start-slide", {
     update: function(){
       // Move to next slide when video has finished
+      if (videoElement.currentTime > videoElement.duration - VIDEO_END_WINDOW) {
+        Slide.play("waiting-slide");
+      }
     },
     start: function(){
-      _panels.start();
+      videoElement.play();
     },
     stop: function(){
-      _panels.stop();
+      
     }
   });
-  
-  function onEnded(e) {
-    console.log("ENDED");
-  }
-  
-  videoElement.addEventListener("ended", onEnded, false);
 });
