@@ -1,5 +1,5 @@
 define(["../slide", "../panels"], function(Slide, Panels){
-  var VIDEO_END_WINDOW = 50;
+  var VIDEO_END_WINDOW = 2;
   
   var slideElement = document.getElementById("start-slide");
   var videoElement = document.getElementById("start-video");

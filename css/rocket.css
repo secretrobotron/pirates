@@ -1,0 +1,15 @@
+#rocket-slide {
+  width: 960px;
+  height: 540px;
+}
+#rocket-slide img {
+  position: absolute;
+}
+#rocket {
+  top: 75px;
+  left: 30px;
+}
+#pirate-head {
+  left: 663px;
+  top: 41px;
+}
