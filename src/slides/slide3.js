@@ -1,4 +1,4 @@
-define(["../slide"], function(Slide){
+define(["../slide", "../panels"], function(Slide, Panels){
 	var CENTER_RECT = [408, 209, 200, 130];
 	
 	var _lastX = 0, _lastY = 0, _lastTime = 0;
@@ -8,6 +8,8 @@ define(["../slide"], function(Slide){
 	var _ak47Element = document.getElementById("ak47");
 	var _ak47NonBlurredElement = document.getElementById("ak47-non-blurred");
 	var _ak47BlurredElement = document.getElementById("ak47-blurred");
+	
+	var _panels = new Panels(_slideElement);
 
   var slide = new Slide("deck-slide", {
 	
@@ -32,7 +34,13 @@ define(["../slide"], function(Slide){
 			_ak47BlurredElement.style.opacity = 1;
 			_deckBackgroundBlurredElement.style.opacity = 0;
 		}
-    }
+    },
+	start: function(){
+      _panels.start();
+	},
+	stop: function(){
+      _panels.stop();
+	}
   });
   
   function onMouseMove(e){

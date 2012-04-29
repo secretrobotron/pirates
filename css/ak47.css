@@ -18,6 +18,7 @@
 	top: 208px;
 }
 #ak47 {
+	z-index: 50;
 	top: 136px;
 	left: 217px;
 	-webkit-transform: rotate(-15deg);
