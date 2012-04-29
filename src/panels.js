@@ -4,10 +4,12 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
       GROWTH_FACTOR = 0.7,
       MAX_PANEL_PERCENT = 0.3;
 
-  return function(slideElement, threshold){
+  return function(slideElement, threshold, ramp, lamp){
 
     var _this = this,
-        _threshold = threshold || 0;
+        _threshold = threshold || 0,
+        _ramp = ramp || 1,
+        _lamp = lamp || 1;
 
     var _leftPanel = slideElement.querySelector("*[data-choice-panel='left']"),
         _rightPanel = slideElement.querySelector("*[data-choice-panel='right']");
@@ -35,13 +37,13 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
     this.update = function(p){
       var maxPanelWidth = slideElement.clientWidth * MAX_PANEL_PERCENT;
       if(p > _threshold){
-        _rightTween.set(Math.min(maxPanelWidth, p * maxPanelWidth));
+        _rightTween.set(Math.min(maxPanelWidth, p * _ramp * maxPanelWidth));
       }
       else{
         _rightTween.set(MIN_PANEL_WIDTH);
       }
-      if(p < -_threshold){
-        _leftTween.set(Math.min(maxPanelWidth, -p * maxPanelWidth));
+      if(p < _threshold){
+        _leftTween.set(Math.min(maxPanelWidth, (1-p) * _lamp * maxPanelWidth));
       }
       else{
         _leftTween.set(MIN_PANEL_WIDTH);
