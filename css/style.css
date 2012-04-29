@@ -7,6 +7,16 @@ html, body {
   overflow: hidden;
 }
 
+#video-container {
+	position: relative;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#baseline {
+	height: 95%;
+}
+
 #intro-video {
   position: fixed;
   top: -5%;
