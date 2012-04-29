@@ -15,10 +15,16 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
       if(videos[i].readyState === 4){
         ++loaded;
       }
+      else{
+        console.log(videos[i].currentSrc, videos[i].readyState);
+      }
     }
     for (var i = audios.length - 1; i >= 0; i--) {
       if(audios[i].readyState === 4){
         ++loaded;
+      }
+      else{
+        console.log(audios[i].currentSrc, audios[i].readyState);
       }
     }
     if(loaded < audios.length + videos.length){
