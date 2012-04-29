@@ -9,14 +9,20 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
 
   function checkAssets(){
     var videos = document.getElementsByTagName("video"),
+        audios = document.getElementsByTagName("audio"),
         loaded = 0;
     for (var i = videos.length - 1; i >= 0; i--) {
       if(videos[i].readyState === 4){
         ++loaded;
       }
     }
-    if(loaded < videos.length){
-      document.getElementById("loading").innerHTML = "Loading... " + loaded + "/" + videos.length;
+    for (var i = audios.length - 1; i >= 0; i--) {
+      if(audios[i].readyState === 4){
+        ++loaded;
+      }
+    }
+    if(loaded < audios.length + videos.length){
+      document.getElementById("loading").innerHTML = "Loading... " + loaded + "/" + (videos.length + audios.length);
       return false;
     }
     return true;
@@ -37,7 +43,6 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
           _titleElement.addEventListener("click", function(e){
             next();
           }, false);
-          document.getElementById("waiting-slide-left").currentTime = 5;
         }
       }, 500);
     },
