@@ -1,13 +1,21 @@
 define([
     "slide",
-    "slides/slide1",
-    "slides/slide2",
   ], function(Slide){
 
-  Slide.sort();
 
-  setTimeout(function(){
-    Slide.play();
-  }, 10);
+  var slides = document.querySelectorAll(".slide[data-src]"),
+      srcs = [];
+  for (var i = slides.length - 1; i >= 0; i--) {
+    var src = slides[i].getAttribute("data-src");
+    srcs.push("slides/" + src);
+  };
+
+  require(srcs, function(){
+    Slide.sort();
+
+    setTimeout(function(){
+      Slide.play();
+    }, 10);
+  });
 
 });
