@@ -22,6 +22,7 @@ define(["../slide", "../rAFLoop", "../tween"], function(Slide, rAFLoop, Tween){
   });
 
   function next(){
+    window.removeEventListener("mousemove", onMouseMove, false);
     Slide.next();
   }
 
@@ -29,7 +30,6 @@ define(["../slide", "../rAFLoop", "../tween"], function(Slide, rAFLoop, Tween){
     var diff = e.clientX - _lastX;
     if(_lastX < e.clientX && diff > MOUSE_SWIPE_DISTANCE){
       next();
-      window.removeEventListener("mousemove", onMouseMove, false);
       return;
     }
     _lastX = e.clientX;
