@@ -38,17 +38,24 @@ define(["parallax"], function(Parallax){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].start();
       };
+      _element.style.left = window.innerWidth + 100 + "px";
       _element.setAttribute("current", true);
-      _stopFlag = false;
-      requestAnimFrame(updateLoop);
+      setTimeout(function(){
+        _element.style.left = window.innerWidth / 2 - _element.clientWidth / 2 + "px";
+        _stopFlag = false;
+        requestAnimFrame(updateLoop);
+      }, 10);
     };
 
     this.stop = function(){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].stop();
       };
-      _element.removeAttribute("current");
-      _stopFlag = true;
+      _element.style.left = (-_element.clientWidth - 100) + "px";
+      setTimeout(function(){
+        _stopFlag = true;
+        _element.removeAttribute("current");
+      }, 1000);
     };
 
     this.startParallaxes = function(){
@@ -65,6 +72,8 @@ define(["parallax"], function(Parallax){
 
     this._element = _element;
     this._parallaxes = _parallaxes;
+
+    _element.style.left = window.innerWidth + 100 + "px";
 
     __slides.push(this);
   }

@@ -20,6 +20,7 @@ html, body {
 }
 
 .slide {
+  width: 960px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -28,7 +29,9 @@ html, body {
   margin: 0;
   padding: 0;
   top: 0px;
-  left: 0px;
+  -moz-transition: left 1s;
+  -webkit-transition: left 1s;
+  transition: left 1s;
 }
 
 .slide[current] {
