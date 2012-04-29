@@ -12,7 +12,6 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
         loaded = 0;
     for (var i = videos.length - 1; i >= 0; i--) {
       if(videos[i].readyState === 4){
-        console.log(videos[i].currentSrc, videos[i].readyState);
         ++loaded;
       }
     }
@@ -38,8 +37,9 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
           _titleElement.addEventListener("click", function(e){
             next();
           }, false);
+          document.getElementById("waiting-slide-left").currentTime = 5;
         }
-      }, 100);
+      }, 500);
     },
     stop: function(){
       _arrowTween.stop();
