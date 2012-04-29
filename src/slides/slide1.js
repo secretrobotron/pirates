@@ -1,12 +1,11 @@
-define(["../slide", "../rAFLoop", "../tween"], function(Slide, rAFLoop, Tween){
-
-  var MOUSE_SWIPE_DISTANCE = 100;
+define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLoop, Tween, Swipe){
 
   var _stoppedParallax = false,
       _titleElement = document.getElementById("intro-title"),
       _arrow = document.getElementById("intro-arrow"),
       _arrowTween = new Tween(0),
-      _lastX = window.innerWidth;
+      _lastX = window.innerWidth,
+      _swipe;
 
   var slide = new Slide("intro-slide", {
     update: function(){
@@ -22,21 +21,17 @@ define(["../slide", "../rAFLoop", "../tween"], function(Slide, rAFLoop, Tween){
   });
 
   function next(){
-    window.removeEventListener("mousemove", onMouseMove, false);
     Slide.next();
+    _swipe.stop();
   }
 
-  function onMouseMove(e){
-    var diff = e.clientX - _lastX;
-    if(_lastX < e.clientX && diff > MOUSE_SWIPE_DISTANCE){
+  _swipe = new Swipe(function(){
       next();
-      return;
-    }
-    _lastX = e.clientX;
-    _arrowTween.set( Math.max(0, Math.min(1, diff/MOUSE_SWIPE_DISTANCE)) );
-  }
+    }, function(p){
+      _arrowTween.set(p*1.5);
+    });
 
-  window.addEventListener("mousemove", onMouseMove, false);
+  _swipe.start();
 
   _titleElement.addEventListener("click", function(e){
     next();
