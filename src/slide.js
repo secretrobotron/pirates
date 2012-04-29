@@ -74,7 +74,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
 
   Slide.sort = function(){
     Slide.slides.sort(function(a, b){
-      return a._element.getAttribute("data-order") > b._element.getAttribute("data-order");
+      return parseInt(a._element.getAttribute("data-order")) > parseInt(b._element.getAttribute("data-order"));
     });  
   };
 
