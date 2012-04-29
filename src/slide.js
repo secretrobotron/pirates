@@ -43,10 +43,10 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
         _parallaxes[i].stop();
       };
       _element.style.left = (-_element.clientWidth - 100) + "px";
+      _rAFLoop.stop();
+      _stopEvent(_this);
       setTimeout(function(){
-        _rAFLoop.stop();
         _element.removeAttribute("current");
-        _stopEvent(_this);
       }, 1000);
     };
 
@@ -96,7 +96,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
       __slides[__currentSlide].stop();
     }
     __currentSlide = index;
-    __slides[index].start();
+    __slides[__currentSlide].start();
   };
 
   Slide.next = function(){

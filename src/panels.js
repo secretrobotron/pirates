@@ -7,9 +7,11 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
   return function(slideElement, threshold, ramp, lamp){
 
     var _this = this,
-        _threshold = threshold || 0,
+        _threshold = threshold || 0.5,
         _ramp = ramp || 1,
         _lamp = lamp || 1;
+
+    _this.last = _threshold;
 
     var _leftPanel = slideElement.querySelector("*[data-choice-panel='left']"),
         _rightPanel = slideElement.querySelector("*[data-choice-panel='right']");
@@ -48,10 +50,11 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
       else{
         _leftTween.set(MIN_PANEL_WIDTH);
       }
+      _this.last = p;
     };
 
     function onMouseMove(e){
-      var diff = -(window.innerWidth / 2 - e.clientX);
+      var diff = Math.max(0, Math.min(1,-window.innerWidth / 2 + e.clientX));
       _this.update(diff);
     }
 
@@ -59,6 +62,7 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
       if(!noMouse){
         window.addEventListener("mousemove", onMouseMove, false);
       }
+      _this.last = _threshold;
       _updateLoop.start();
       _rightTween.start();
       _leftTween.start();
