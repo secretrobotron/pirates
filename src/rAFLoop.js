@@ -29,7 +29,7 @@ define([], function(){
     };
 
     _this.stop = function(){
-      _stopFlag = false;
+      _stopFlag = true;
     };
 
   };
