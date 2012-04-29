@@ -1,4 +1,4 @@
-define(["../slide", "../panels"], function(Slide, Panels){
+define(["../slide"], function(Slide){
   var VIDEO_END_WINDOW = 2;
   
   var slideElement = document.getElementById("start-slide");

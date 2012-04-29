@@ -22,6 +22,7 @@
         }
         
         for (var i = panelVideos.length -1; i>-1; i--) {
+          panelVideos[i].load();
           panelVideos[i].play();
         }
         
@@ -29,13 +30,13 @@
       }
 
       if(centerVideo.currentTime > centerVideo.duration - VIDEO_END_WINDOW){
-        if(_panels.last === 0){
+        if(_panels.last === 1){
           //right
-          Slide.play("deck-slide");
+          Slide.play("rocket-slide");
         }
         else{
           //left
-          Slide.play("ship-slide");
+          Slide.play("peace-slide");
         }
       }
       

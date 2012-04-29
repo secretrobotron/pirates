@@ -1,4 +1,4 @@
-define(["../slide", "../panels", "../tween", "../timer"], function(Slide, Panels, Tween, Timer){
+define(["../slide", "../tween", "../timer"], function(Slide, Tween, Timer){
 
   var DISTANCE_MULTIPLIER = 30;
   var SLIDE_DURATION = 7000;
@@ -8,7 +8,6 @@ define(["../slide", "../panels", "../tween", "../timer"], function(Slide, Panels
 
   var _videos = slideElement.querySelectorAll("video");
   
-  var _panels = new Panels(slideElement, 0.5, 0.8, 0.8);
   var _rocketTween = new Tween(0.5);
   var _rocketOffset = [rocketElement.offsetTop, rocketElement.offsetLeft];
 
@@ -36,7 +35,6 @@ define(["../slide", "../panels", "../tween", "../timer"], function(Slide, Panels
     start: function(){
       slideElement.addEventListener("mousemove", onMouseMove, false);
       _rocketTween.start();
-      _panels.start(true);
       _timer.start();
       document.querySelector("#rocket-slide [data-choice-panel='left'] video").currentTime = 6;
       document.querySelector("#rocket-slide [data-choice-panel='right'] video").currentTime = 16;
@@ -46,7 +44,6 @@ define(["../slide", "../panels", "../tween", "../timer"], function(Slide, Panels
     },
     stop: function(){
        _rocketTween.stop();
-      _panels.stop();
       for (var i = _videos.length - 1; i >= 0; i--) {
         _videos[i].pause();
       };
