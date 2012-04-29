@@ -12,4 +12,25 @@
 #pirate-head {
   left: 663px;
   top: 41px;
+  -webkit-animation: payattention 5s ease-in-out 2s infinite alternate;
+  -webkit-transform-origin: 70% 80%;
 }
+
+@-webkit-keyframes payattention{
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(-5deg);
+  }
+  50% {
+    -webkit-transform: rotate(5deg);
+  }
+  75% {
+    -webkit-transform: rotate(-10deg);
+  }
+  100% {
+    -webkit-transform: rotate(5deg);
+  }
+}
+
