@@ -1,5 +1,8 @@
 define(["../slide", "../panels"], function(Slide, Panels){
-	var CENTER_RECT = [408, 209, 200, 130];
+	var CENTER_RECT = [408, 209, 200, 130],
+			THRESHOLD = 0.1,
+			P_OFFSET = 0.85,
+			RADIUS = 250;
 	
 	var _lastX = 0, _lastY = 0, _lastTime = 0;
 	var _slideElement = document.getElementById("deck-slide");
@@ -9,7 +12,9 @@ define(["../slide", "../panels"], function(Slide, Panels){
 	var _ak47NonBlurredElement = document.getElementById("ak47-non-blurred");
 	var _ak47BlurredElement = document.getElementById("ak47-blurred");
 	
-	var _panels = new Panels(_slideElement);
+	var _panels = new Panels(_slideElement, THRESHOLD);
+
+	var _centerPoint = [window.innerWidth / 2, window.innerHeight / 2];
 
   var slide = new Slide("deck-slide", {
 	
@@ -34,9 +39,16 @@ define(["../slide", "../panels"], function(Slide, Panels){
 			_ak47BlurredElement.style.opacity = 1;
 			_deckBackgroundBlurredElement.style.opacity = 0;
 		}
-    },
+
+		var diff = [ _centerPoint[0] - _lastX, _centerPoint[1] - _lastY ],
+				length = Math.sqrt(diff[0]*diff[0] + diff[1]*diff[1]);
+
+		var p = (length / RADIUS) - P_OFFSET;
+		_panels.update(p);
+
+	},
 	start: function(){
-      _panels.start();
+      _panels.start(true);
 	},
 	stop: function(){
       _panels.stop();
@@ -45,7 +57,7 @@ define(["../slide", "../panels"], function(Slide, Panels){
   
   function onMouseMove(e){
     _lastX = e.clientX;  
-	_lastY = e.clientY;
+		_lastY = e.clientY;
   }
 
   _slideElement.addEventListener("mousemove", onMouseMove, false);
