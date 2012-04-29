@@ -1,16 +1,17 @@
-﻿define(["../slide", "../panels"], function(Slide, Panels){
+﻿define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
   // Wait for panels to display after a certain amount of time...
   var SHOW_PANELS_DELAY = 5.0,
-      VIDEO_END_WINDOW = 2;
+      VIDEO_END_WINDOW = 1;
   
   var slideElement = document.getElementById("waiting-slide");
   var panels = document.querySelectorAll("#waiting-slide > [data-choice-panel]");
   var panelVideos = document.querySelectorAll("#waiting-slide > [data-choice-panel] video");
-  console.log(panelVideos);
   var centerVideo = document.getElementById("waiting-video");
   
   var showingPanels = false;
   var _panels = new Panels(slideElement);
+  
+  var _timer = new Timer(slideElement, 5000);
 
   var slide = new Slide("waiting-slide", {
     update: function(){

@@ -9,6 +9,8 @@ define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
   var _rocketTween = new Tween(0.5);
   var _rocketOffset = [rocketElement.offsetTop, rocketElement.offsetLeft];
   
+  var panelVideos = document.querySelectorAll("#rocket-slide > [data-choice-panel] video");
+  
   var slide = new Slide("rocket-slide", {
     update: function(){
       var slideHeight = slideElement.clientHeight;
@@ -27,6 +29,10 @@ define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
     stop: function(){
        _rocketTween.stop();
       _panels.stop();
+      
+      for (var i = panelVideos.length -1; i>-1; i--) {
+        panelVideos[i].stop();
+      }
     }
   });
   
