@@ -1,0 +1,23 @@
+#deck-slide {
+  position: relative;
+  width: 960px;
+  height: 540px;
+}
+#deck-slide img {
+  display: inline;
+  position: absolute;
+}
+
+#two-men {
+	left: 403px;
+	top: 208px;
+}
+#ak47 {
+	top: 136px;
+	left: 217px;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+}
+#ak47 img {
+	position: absolute;
+}
