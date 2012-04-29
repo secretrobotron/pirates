@@ -24,3 +24,8 @@
   top: 159px;
   left: 342px;
 }
+
+*[data-choice-panel="left"] video{
+  position: relative;
+  left: -300px;
+}

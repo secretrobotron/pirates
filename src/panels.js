@@ -1,6 +1,6 @@
 define(["tween", "rAFLoop"], function(Tween, rAFLoop){
   
-  var MIN_PANEL_WIDTH = 20,
+  var MIN_PANEL_WIDTH = 50,
       GROWTH_FACTOR = 0.7;
 
   return function(slideElement){
