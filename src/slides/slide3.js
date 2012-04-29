@@ -11,7 +11,7 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 	var _ak47NonBlurredElement = document.getElementById("ak47-non-blurred");
 	var _ak47BlurredElement = document.getElementById("ak47-blurred");
 	
-	var _panels = new Panels(_slideElement, THRESHOLD, 1, 2);
+	//var _panels = new Panels(_slideElement, THRESHOLD, 1, 2);
 
 	var _centerPoint = [window.innerWidth / 2, window.innerHeight / 2];
 
@@ -45,17 +45,17 @@ define(["../slide", "../panels", "../timer"], function(Slide, Panels, Timer){
 					length = Math.sqrt(diff[0]*diff[0] + diff[1]*diff[1]);
 
 			var p = length / RADIUS;
-			_panels.update(p);
+			//_panels.update(p);
 
 		},
 		start: function(){
 			setTimeout(function(){
-				_panels.start(true);
+				//_panels.start(true);
 				_timer.start();
 			}, 1000);
 		},
 		stop: function(){
-			_panels.stop();
+			//_panels.stop();
 			_timer.stop();
 		}
   });
