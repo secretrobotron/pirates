@@ -5,7 +5,8 @@ define([], function(){
   return function(element){
     var originalPosition = [element.offsetLeft, element.offsetTop],
         parallaxFactor = element.getAttribute("data-parallax-z") || PARALLAX_FACTOR,
-        parallaxAxis = element.getAttribute("data-parallax-axis") || "xy";
+        parallaxAxis = element.getAttribute("data-parallax-axis") || "xy",
+        _this = this;
 
     function onMouseMove(e){
       var diffX = e.clientX - window.innerWidth / 2,
@@ -26,6 +27,8 @@ define([], function(){
     this.stop = function(){
       window.removeEventListener("mousemove", onMouseMove, false);
     };
+
+    _this._element = element;
   }
 
 });
