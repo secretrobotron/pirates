@@ -35,6 +35,7 @@ define(["../slide", "../panels"], function(Slide, Panels){
       }
 
       if(document.getElementById("ship-audio").currentTime > DURATION){
+        document.getElementById("ship-audio").pause();
         Slide.play("deck-slide");
       }
     },
