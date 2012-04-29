@@ -4,9 +4,12 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
       GROWTH_FACTOR = 0.7,
       MAX_PANEL_PERCENT = 0.3;
 
-  return function(slideElement){
+  return function(slideElement, threshold, ramp, lamp){
 
-    var _this = this;
+    var _this = this,
+        _threshold = threshold || 0,
+        _ramp = ramp || 1,
+        _lamp = lamp || 1;
 
     var _leftPanel = slideElement.querySelector("*[data-choice-panel='left']"),
         _rightPanel = slideElement.querySelector("*[data-choice-panel='right']");
@@ -31,32 +34,37 @@ define(["tween", "rAFLoop"], function(Tween, rAFLoop){
       }
     });
 
-    function onMouseMove(e){
-      var diff = -(window.innerWidth / 2 - e.clientX),
-          slideWidthPortion = slideElement.clientWidth/5,
-          maxPanelWidth = slideElement.clientWidth * MAX_PANEL_PERCENT;
-      if(diff > slideWidthPortion){
-        _rightTween.set(Math.min(maxPanelWidth, diff * GROWTH_FACTOR));
+    this.update = function(p){
+      var maxPanelWidth = slideElement.clientWidth * MAX_PANEL_PERCENT;
+      if(p > _threshold){
+        _rightTween.set(Math.min(maxPanelWidth, p * _ramp * maxPanelWidth));
       }
       else{
         _rightTween.set(MIN_PANEL_WIDTH);
       }
-      if(diff < -slideWidthPortion){
-        _leftTween.set(Math.min(maxPanelWidth, -diff * GROWTH_FACTOR));
+      if(p < _threshold){
+        _leftTween.set(Math.min(maxPanelWidth, (1-p) * _lamp * maxPanelWidth));
       }
       else{
         _leftTween.set(MIN_PANEL_WIDTH);
       }
+    };
+
+    function onMouseMove(e){
+      var diff = -(window.innerWidth / 2 - e.clientX);
+      _this.update(diff);
     }
 
-    this.start = function(){
-      window.addEventListener("mousemove", onMouseMove, false);
+    this.start = function(noMouse){
+      if(!noMouse){
+        window.addEventListener("mousemove", onMouseMove, false);
+      }
       _updateLoop.start();
       _rightTween.start();
       _leftTween.start();
     };
 
-    this.stop = function(){
+    this.stop = function(noMouse){
       window.removeEventListener("mousemove", onMouseMove, false);
       _updateLoop.stop();
       _rightTween.stop();

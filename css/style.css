@@ -70,3 +70,11 @@ html, body {
 *[data-choice-panel="right"]{
   right: 0;
 }
+
+.timer {
+  position: absolute;
+  margin-left: -50px;
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+}
