@@ -6,6 +6,8 @@ require([
 
   Slide.sort();
 
-  Slide.play();
+  setTimeout(function(){
+    Slide.play();
+  }, 10);
 
 });
