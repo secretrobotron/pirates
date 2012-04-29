@@ -15,15 +15,14 @@ define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
       var percentage = Math.min(_mouseY, slideHeight) / slideHeight;
       _rocketTween.set(1 - percentage);
       
-      console.log(_mouseY, _rocketTween.value);
-      
       rocketElement.style.top = _rocketOffset[0] - _rocketTween.value * DISTANCE_MULTIPLIER * 0.92 + "px";
       rocketElement.style.left = _rocketOffset[1] - _rocketTween.value * DISTANCE_MULTIPLIER + "px";
+      _panels.update(percentage);
     },
     start: function(){
       slideElement.addEventListener("mousemove", onMouseMove, false);
       _rocketTween.start();
-      _panels.start();
+      _panels.start(true);
     },
     stop: function(){
        _rocketTween.stop();
