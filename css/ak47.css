@@ -7,7 +7,8 @@
   position: absolute;
 }
 
-#two-men, #two-men-non-blurred, #two-men-blurred,
+#deck-background-non-blurred, #deck-background-blurred,
+#two-men-non-blurred, #two-men-blurred,
 #ak47, #ak47-non-blurred, #ak47-blurred {
 	-webkit-transition: all .5s ease-in-out;
 	transition: all 0.5s ease-in-out;
@@ -24,12 +25,11 @@
 	-webkit-transform-origin: right 20%;
 	transform-origin: right 20%;
 }
-#tw-men img,
-#ak47 img {
+#deck-background { position: relative; }
+#deck-background img, #two-men img, #ak47 img {
 	position: absolute;
 }
-#two-men-non-blurred,
-#ak47-blurred {
+#deck-background-non-blurred, #two-men-non-blurred, #ak47-blurred {
 	opacity: 1;
 }
 /*
