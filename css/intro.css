@@ -1,20 +1,26 @@
-#intro-slide div {
+#intro-title {
   font: 80pt Helvetica;
   color: #fff;
   margin-left: 20pt;
   position: absolute;
   bottom: 5px;
-  width: 100%;
-  left: 55px;
+  right: -15px;
   cursor: pointer;
   white-space: nowrap;
-  text-align: right;
 }
 
-#intro-slide div div {
+#intro-sub-title {
   position: absolute;
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(-90deg);
   transform: rotate(90deg);
   font-size: 30%;
+}
+
+#intro-arrow {
+  font: 80pt Helvetica;
+  color: #fff;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }

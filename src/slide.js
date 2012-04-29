@@ -1,23 +1,15 @@
-define(["parallax"], function(Parallax){
+define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
   
-  var requestAnimFrame = (function(){
-    return  window.requestAnimationFrame       || 
-            window.webkitRequestAnimationFrame || 
-            window.mozRequestAnimationFrame    || 
-            window.oRequestAnimationFrame      || 
-            window.msRequestAnimationFrame     || 
-            function( callback ){
-              window.setTimeout(callback, 1000 / 60);
-            };
-  })();
-
   var __currentSlide = 0,
       __slides = [];
 
   function Slide(elementID, events){
     var _element = document.getElementById(elementID),
         _updateEvent = events.update || function(){},
+        _startEvent = events.start || function(){},
+        _stopEvent = events.stops || function(){},
         _stopFlag = false,
+        _rAFLoop,
         _this = this;
 
     var _parallaxes = [];
@@ -28,11 +20,10 @@ define(["parallax"], function(Parallax){
     };
 
     function updateLoop(){
-      if(!_stopFlag){
-        _updateEvent(_this);
-        requestAnimFrame(updateLoop);
-      }
+      _updateEvent(_this);
     }
+
+    _rAFLoop = new rAFLoop(updateLoop);
 
     this.start = function(){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
@@ -42,8 +33,8 @@ define(["parallax"], function(Parallax){
       _element.setAttribute("current", true);
       setTimeout(function(){
         _element.style.left = window.innerWidth / 2 - _element.clientWidth / 2 + "px";
-        _stopFlag = false;
-        requestAnimFrame(updateLoop);
+        _rAFLoop.start();
+        _startEvent(_this);
       }, 10);
     };
 
@@ -53,8 +44,9 @@ define(["parallax"], function(Parallax){
       };
       _element.style.left = (-_element.clientWidth - 100) + "px";
       setTimeout(function(){
-        _stopFlag = true;
+        _rAFLoop.stop();
         _element.removeAttribute("current");
+        _stopEvent(_this);
       }, 1000);
     };
 
