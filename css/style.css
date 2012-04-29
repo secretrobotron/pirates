@@ -47,3 +47,20 @@ html, body {
 .slide[current] {
   visibility: visible;
 }
+
+*[data-choice-panel]{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  border: 20px solid rgba(255, 255, 255, 0.6);
+  z-index: 20;
+}
+
+*[data-choice-panel="left"]{
+  left: 0;
+}
+
+*[data-choice-panel="right"]{
+  right: 0;
+}
