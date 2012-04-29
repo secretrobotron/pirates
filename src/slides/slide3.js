@@ -3,6 +3,9 @@ define(["../slide"], function(Slide){
 	
 	var _lastX = 0, _lastY = 0;
 	var _slideElement = document.getElementById("deck-slide");
+	var _ak47Element = document.getElementById("ak47");
+	var _ak47NonBlurredElement = document.getElementById("ak47-non-blurred");
+	var _ak47BlurredElement = document.getElementById("ak47-blurred");
 
   var slide = new Slide("deck-slide", {
     update: function(){
@@ -12,7 +15,13 @@ define(["../slide"], function(Slide){
 		if (Math.abs(halfWidth - _lastX) < CENTER_SIZE &&
 			Math.abs(halfHeight - _lastY) < CENTER_SIZE)
 		{
-			// Play transation
+			_ak47NonBlurredElement.style.opacity = 1;
+			//_ak47BlurredElement.style.opacity = 0;
+		}
+		else
+		{
+			_ak47NonBlurredElement.style.opacity = 0;
+			//_ak47BlurredElement.style.opacity = 1;
 		}
     }
   });

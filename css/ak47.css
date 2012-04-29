@@ -15,9 +15,22 @@
 #ak47 {
 	top: 136px;
 	left: 217px;
-	-webkit-transition: all 1s;
-	transition: all 1s;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 #ak47 img {
 	position: absolute;
+}
+#ak47-non-blurred {
+	opacity: 1;
+	filter: blur(strength=50);
+}
+#ak47-blurred {
+	opacity: 0;
+}
+
+#ak47-non-blurred,
+#ak47-blurred {
+	-webkit-transition: all .5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
