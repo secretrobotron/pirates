@@ -19,7 +19,7 @@ define(["rAFLoop"], function(rAFLoop){
 
     var _updateLoop = new rAFLoop(function(){
       var timeLeft = _time - (Date.now() - _starTime),
-          p = Math.max(0.01, timeLeft/_time);
+          p = timeLeft/_time;
       _ctx.lineCap = "round";
       _ctx.lineWidth = 10;
       _ctx.clearRect(0, 0, SIZE, SIZE);
@@ -27,10 +27,14 @@ define(["rAFLoop"], function(rAFLoop){
       //_ctx.moveTo(SIZE/2, SIZE/2);
       _ctx.strokeStyle = "#fff";
       _ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-      _ctx.arc(SIZE/2, SIZE/2, SIZE/2 - 10, 0, Math.PI*2*(1-p), true);
+      _ctx.arc(SIZE/2, SIZE/2, SIZE/2 - 10, 0, Math.PI*2*(1-Math.max(0.01, p)), true);
       //_ctx.lineTo(SIZE/2, SIZE/2);
       //_ctx.fill();
       _ctx.stroke();
+      if(p < 0 && params.complete){
+        params.complete();
+        _updateLoop.stop();
+      }
     });
 
     parent.appendChild(_canvas);

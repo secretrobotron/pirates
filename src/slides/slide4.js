@@ -6,7 +6,6 @@
   var slideElement = document.getElementById("waiting-slide");
   var panels = document.querySelectorAll("#waiting-slide > [data-choice-panel]");
   var panelVideos = document.querySelectorAll("#waiting-slide > [data-choice-panel] video");
-  console.log(panelVideos);
   var centerVideo = document.getElementById("waiting-video");
   
   var showingPanels = false;

@@ -1,6 +1,7 @@
-define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
+define(["../slide", "../panels", "../tween", "../timer"], function(Slide, Panels, Tween, Timer){
 
   var DISTANCE_MULTIPLIER = 30;
+  var SLIDE_DURATION = 5000;
   var _mouseY = 0;
   var slideElement = document.getElementById("rocket-slide");
   var rocketElement = document.getElementById("rocket");
@@ -8,6 +9,14 @@ define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
   var _panels = new Panels(slideElement, 0.5, 0.5, 0.5);
   var _rocketTween = new Tween(0.5);
   var _rocketOffset = [rocketElement.offsetTop, rocketElement.offsetLeft];
+
+  var _lastPercentage = 0.5;
+
+  var _timer = new Timer(slideElement, SLIDE_DURATION, {
+    complete: function(){
+      Slide.play("motorboat-slide", _lastPercentage > 0.5);
+    }
+  });
   
   var slide = new Slide("rocket-slide", {
     update: function(){
@@ -18,11 +27,13 @@ define(["../slide", "../panels", "../tween"], function(Slide, Panels, Tween){
       rocketElement.style.top = _rocketOffset[0] - _rocketTween.value * DISTANCE_MULTIPLIER * 0.92 + "px";
       rocketElement.style.left = _rocketOffset[1] - _rocketTween.value * DISTANCE_MULTIPLIER + "px";
       _panels.update(percentage);
+      _lastPercentage = percentage;
     },
     start: function(){
       slideElement.addEventListener("mousemove", onMouseMove, false);
       _rocketTween.start();
       _panels.start(true);
+      _timer.start();
     },
     stop: function(){
        _rocketTween.stop();

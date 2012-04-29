@@ -78,7 +78,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
     });  
   };
 
-  Slide.play = function(slide){
+  Slide.play = function(slide, options){
     var index = 0;
     if(typeof(slide) === "string"){
       for (var i = __slides.length - 1; i >= 0; i--) {
@@ -93,16 +93,16 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
     }
     
     if(__currentSlide > -1){
-      __slides[__currentSlide].stop();
+      __slides[__currentSlide].stop(options);
     }
     __currentSlide = index;
-    __slides[__currentSlide].start();
+    __slides[__currentSlide].start(options);
   };
 
-  Slide.next = function(){
+  Slide.next = function(options){
     __slides[__currentSlide].stop();
     var nextSlide = __slides[++__currentSlide];
-    nextSlide.start();
+    nextSlide.start(options);
   };
 
   return Slide;
