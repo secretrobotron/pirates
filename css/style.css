@@ -55,6 +55,12 @@ html, body {
   width: 20px;
   border: 20px solid rgba(255, 255, 255, 0.6);
   z-index: 20;
+  overflow: hidden;
+  font: 50pt Verdana;
+}
+
+*[data-choice-panel] video {
+  height: 100%;
 }
 
 *[data-choice-panel="left"]{
