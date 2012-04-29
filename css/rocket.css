@@ -39,3 +39,11 @@
   top: 480px;
   z-index: 900;
 }
+
+#rocket-slide [data-choice-panel="left"] video{
+  left: -300px;
+}
+
+#rocket-slide [data-choice-panel="right"] video{
+  left: -300px;
+}

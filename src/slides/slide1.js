@@ -16,6 +16,9 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
       _arrowTween.start();
       setTimeout(function(){
         _swipe.start();
+        _titleElement.addEventListener("click", function(e){
+          next();
+        }, false);
       }, 1000);
     },
     stop: function(){
@@ -35,8 +38,5 @@ define(["../slide", "../rAFLoop", "../tween", "../swipe"], function(Slide, rAFLo
       _arrowTween.set(p*1.5);
     });
 
-  _titleElement.addEventListener("click", function(e){
-    next();
-  }, false);
 
 });
