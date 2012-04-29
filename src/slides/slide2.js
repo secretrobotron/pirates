@@ -15,8 +15,6 @@ define(["../slide", "../panels"], function(Slide, Panels){
     [shipElements[0].offsetTop, shipElements[0].offsetLeft],
     [shipElements[1].offsetTop, shipElements[1].offsetLeft]];
 
-  var _panels = new Panels(slideElement);
-
   var slide = new Slide("ship-slide", {
     update: function(){
       _elapsedTime += 0.1;
