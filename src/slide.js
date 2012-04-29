@@ -25,7 +25,7 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
 
     _rAFLoop = new rAFLoop(updateLoop);
 
-    this.start = function(){
+    this.start = function(options){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].start();
       };
@@ -34,17 +34,17 @@ define(["parallax", "rAFLoop"], function(Parallax, rAFLoop){
       setTimeout(function(){
         _element.style.left = window.innerWidth / 2 - _element.clientWidth / 2 + "px";
         _rAFLoop.start();
-        _startEvent(_this);
+        _startEvent(_this, options);
       }, 10);
     };
 
-    this.stop = function(){
+    this.stop = function(options){
       for (var i = _parallaxes.length - 1; i >= 0; i--) {
         _parallaxes[i].stop();
       };
       _element.style.left = (-_element.clientWidth - 100) + "px";
       _rAFLoop.stop();
-      _stopEvent(_this);
+      _stopEvent(_this, options);
       setTimeout(function(){
         _element.removeAttribute("current");
       }, 1000);
