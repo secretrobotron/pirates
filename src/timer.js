@@ -31,8 +31,10 @@ define(["rAFLoop"], function(rAFLoop){
       //_ctx.lineTo(SIZE/2, SIZE/2);
       //_ctx.fill();
       _ctx.stroke();
-      if(p < 0 && params.complete){
-        params.complete();
+      if(p < 0){
+        if(params && params.complete){
+          params.complete();
+        }
         _updateLoop.stop();
       }
     });
